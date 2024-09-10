@@ -31,8 +31,8 @@
     @foreach($products as $product)
         <div class="item">
             <p>{{ $product->name }}</p>
-            <p>Количество: {{ $product->price }}</p>
-            <p>Цена: {{ $product->cost }}</p>
+            <p>Количество: {{ $product->amount }}</p>
+            <p>Цена: {{ $product->cost }}р.</p>
         </div>
     @endforeach
 </div>
