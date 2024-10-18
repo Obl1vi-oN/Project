@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
@@ -22,3 +23,7 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/profile', [OrderController::class, 'show'])->middleware('auth');
+
+Route::get('/admin', [AdminController::class, 'admin'])->middleware('admin')->middleware('auth');
+
+Route::put('/admin/orders/{id}/status', [AdminController::class, 'updateStatus'])->name('admin.updateStatus');

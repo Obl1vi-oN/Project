@@ -2,7 +2,7 @@
 
 @section('content')
 
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,6 +18,9 @@
             @method('post')
             <h1>Профиль</h1>
             <button type="submit" class="btn">Выйти</button>
+            @if(Auth::user()->role == "admin")
+                <a href="/admin" class="btn">Страница администратора</a>
+            @endif
         </form>
     </div>
 
@@ -26,20 +29,21 @@
         <p>Фамилия: {{Auth::user()->last_name}}</p>
         <p>Почта: {{Auth::user()->email}}</p>
     </div>
-    <h1>История заказов</h1>
-    <div class="history-content">
-        <ul>
-            @foreach($show as $shows)
-                <li>
-                    <p>Статус: </p>
-                    <p>Название: {{$shows->product->name}}</p>
-                    <p>Количество: {{$shows->quantity}}</p>
-                    <p>Сумма: {{$shows->total_cost}}</p>
-                </li>
-            @endforeach
-
-        </ul>
-    </div>
+    @if($show->isNotEmpty())
+        <h1>История заказов</h1>
+        <div class="history-content">
+            <ul>
+                @foreach($show as $shows)
+                    <li>
+                        <p>Статус: {{ $shows->status }}</p>
+                        <p>Название: {{ $shows->product->name }}</p>
+                        <p>Количество: {{ $shows->quantity }}</p>
+                        <p>Сумма: {{ $shows->total_cost }}</p>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 </div>
 </body>
 </html>
