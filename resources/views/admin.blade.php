@@ -26,17 +26,17 @@
                     <td>
                         {{-- Форма для изменения статуса --}}
                         @if($order->status == 'Новый')
-                            <form action="{{ route('admin.updateStatus', $order->id) }}" method="POST">
+                            <form action="{{ route('admin.statusNew', $order->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
-                                <input type="hidden" name="status" value="Одобрен">
+                                <input type="hidden" name="status" value="Одобрено">
                                 <button type="submit" class="btn btn-table btn-primary">Одобрить</button>
                             </form>
-                        @elseif($order->status == 'Одобрен')
-                            <form action="{{ route('admin.updateStatus', $order->id) }}" method="POST">
+                        @elseif($order->status == 'Одобрено')
+                            <form action="{{ route('admin.statusApproved', $order->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
-                                <input type="hidden" name="status" value="Доставлен">
+                                <input type="hidden" name="status" value="Доставлено">
                                 <button type="submit" class="btn btn-table btn-success">Доставлен</button>
                             </form>
                         @endif
@@ -50,6 +50,12 @@
     @if (session('success'))
         <script>
             alert("{{ session('success') }}");
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            alert("{{ session('error') }}");
         </script>
     @endif
 @endsection

@@ -2,15 +2,7 @@
 
 @section('content')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Каталог</title>
-</head>
-<body>
-<div class="container">
+<div class="container mx-auto">
     <h1>Каталог</h1>
     <div class="catalog-content">
         @foreach($products as $product)
@@ -21,6 +13,9 @@
                 <a href="/product/{{ $product->id }}" class="btn">Подробнее</a>
             </div>
         @endforeach
+    </div>
+    <div>
+        {{$products->links()}}
     </div>
     <div class="order-btn">
         <button id="orderBtn" class="btn order-btn">Заказать</button>
@@ -44,7 +39,7 @@
             </div>
             <div class="inputs">
                 <label for="quantity">Количество:</label>
-                <input type="number" name="quantity" id="quantity" class="input" min="1" required>
+                <input type="number" name="quantity" id="quantity" class="input" min="1" max="{{$product->amount}}" required>
             </div>
 
             <button type="submit" class="btn">Подтвердить заказ</button>
@@ -77,7 +72,5 @@
         }
     }
 </script>
-</body>
-</html>
 
 @endsection

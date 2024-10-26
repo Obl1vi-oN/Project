@@ -13,7 +13,7 @@ Route::get('/product/{id}', [ProductController::class, 'show']);
 
 Route::get('profile', [ProfileController::class, 'profile'])->name('profile')->middleware('auth');
 
-Route::post('/order', [OrderController::class, 'store']);
+Route::post('/order', [OrderController::class, 'store'])->name('order')->middleware('auth');
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
@@ -26,4 +26,6 @@ Route::get('/profile', [OrderController::class, 'show'])->middleware('auth');
 
 Route::get('/admin', [AdminController::class, 'admin'])->middleware('admin')->middleware('auth');
 
-Route::put('/admin/orders/{id}/status', [AdminController::class, 'updateStatus'])->name('admin.updateStatus');
+Route::put('/admin/orders/{id}/status/new', [AdminController::class, 'statusNew'])->name('admin.statusNew')->middleware('auth')->middleware('admin');
+
+Route::put('/admin/orders/{id}/status/approved', [AdminController::class, 'statusApproved'])->name('admin.statusApproved')->middleware('auth')->middleware('admin');

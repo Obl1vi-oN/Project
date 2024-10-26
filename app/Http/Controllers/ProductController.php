@@ -9,7 +9,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $product = Product::all();
+        $product = Product::paginate(perPage: 4);
         return view('index', ['products' => $product]);
     }
     public function show($id)

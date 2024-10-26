@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite('public/css/app.css')
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
@@ -11,7 +12,7 @@
 @include('header')
 
 {{-- Основной контент --}}
-<div class="content">
+<div class="content mx-auto">
     @yield('content')
 </div>
 
